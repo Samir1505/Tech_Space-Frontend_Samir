@@ -1,4 +1,5 @@
 "use client";
+import { Link } from 'lucide-react';
 import React, { useEffect } from 'react'
 
 function Header() {
@@ -149,10 +150,10 @@ function Header() {
 
                     {/* Navigation Items (horizontally scrollable on small devices) */}
                     <div className="d-flex flex-row flex-nowrap overflow-auto gap-5 mt-2 mt-lg-0 samir">
-                        <a className="nav-link custom-hover active text-dark fw-semibold  py-1 rounded hover-bg" href="#">
+                        <a className="nav-link custom-hover active text-dark fw-semibold  py-1 rounded hover-bg" href="/">
                             Home
                         </a>
-                        <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="#">
+                        <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="/About">
                             About Us
                         </a>
                         <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="#">
