@@ -98,6 +98,42 @@ header.sticky.animated-sticky {
   padding-right: 0 !important;
 }
 
+npm 
+/* service */
+.service {
+  width: 40%;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.service-card {
+  transition: background-color 0.2s ease;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Desktop: Target all col-lg-3 in the row */
+.row .col-lg-3 {
+  transition: background-color 0.2s ease;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.row .col-lg-3:hover {
+  background-color: #f0f8ff;
+}
+
+/* Mobile: Target swiper slides */
+.swiper-slide>div {
+  transition: background-color 0.2s ease;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.swiper-slide>div:active {
+  background-color: #e0f7fa;
+}
+
 
 
 

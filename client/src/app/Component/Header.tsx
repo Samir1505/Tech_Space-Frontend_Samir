@@ -159,7 +159,7 @@ function Header() {
                         <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="#">
                             Courses
                         </a>
-                        <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="#">
+                        <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="/Services">
                             Services
                         </a>
                         <a className="nav-link custom-hover text-dark fw-semibold  py-1 rounded hover-bg" href="#">

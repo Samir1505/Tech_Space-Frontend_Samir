@@ -129,7 +129,7 @@ function page() {
                         </div>
 
                         {/* Image Section */}
-                        <div className="col-md-6 position-relative mt-4 mt-md-0">
+                        <div className="col-md-6 position-relative  mt-md-0">
                             <div className="shadow rounded overflow-hidden">
                                 <img
                                     className='w-100'
