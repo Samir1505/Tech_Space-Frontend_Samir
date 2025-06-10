@@ -86,26 +86,30 @@ function page() {
         <>
 
             {/* services */}
-            <section className='py-4 '>
-                <h2 className='fw-bold text-center  mt-5'>Our Services</h2>
+            <section className='py-4'>
+                <h2 className='fw-bold text-center '>Our Services</h2>
                 <h5 className='text-center mt-3'>Exceptional Services For Your Business Growth</h5>
-                <h6 className="text-center fw-bold mb-4 mt-3">
+                <h6 className='text-center fw-bold mb-4 mt-3'>
                     Discover our wide range of digital solutions to enhance your online presence.
                 </h6>
 
-                <div className="container text-center  service-card">
+                <div className="container text-center service-card">
                     {/* Desktop grid view */}
-                    <div className="d-none d-lg-block ">
+                    <div className="d-none d-lg-block">
                         <div className="row gy-4">
                             {services.map((item, index) => (
-                                <div className="col-lg-3 text-center service-card" key={index}>
+                                <div
+                                    className="col-lg-3 text-center service-card"
+                                    key={index}
+                                    data-aos="fade-up"
+                                    data-aos-delay={index * 200}
+                                >
                                     <img className='service img-fluid' src={item.img} alt={item.title} />
                                     <h4 className='fw-bold mt-2'>{item.title}</h4>
                                     <p className='fs-5'>{item.desc}</p>
                                 </div>
                             ))}
                         </div>
-
                     </div>
 
                     {/* Mobile Swiper view */}
@@ -119,7 +123,11 @@ function page() {
                         >
                             {services.map((item, index) => (
                                 <SwiperSlide key={index}>
-                                    <div className="text-center px-4">
+                                    <div
+                                        className="text-center px-4"
+                                        data-aos="fade-up"
+                                        data-aos-delay={index * 200}
+                                    >
                                         <img className='service img-fluid' src={item.img} alt={item.title} />
                                         <h4 className='fw-bold mt-3'>{item.title}</h4>
                                         <p className='fs-6'>{item.desc}</p>
@@ -130,7 +138,6 @@ function page() {
                     </div>
                 </div>
             </section>
-
 
             {/* number section */}
             <section

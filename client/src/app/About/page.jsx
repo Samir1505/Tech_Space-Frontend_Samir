@@ -68,15 +68,15 @@ function page() {
         <>
             {/* About page */}
             <section className='py-4'>
-
                 <div className="container py-5">
                     <div className="row align-items-center">
+
                         {/* Text Section */}
                         <div className="col-md-6">
-                            <h2 className="fw-bold mb-4">Our Story</h2>
+                            <h2 className="fw-bold mb-4">ABOUT US</h2>
 
-                            {/* Collapsible text for mobile */}
-                            <div className={showMore ? '' : 'd-none d-md-block'}>
+                            {/* Desktop View */}
+                            <div className="d-none d-md-block">
                                 <p>
                                     Founded in 2013, Tech Space Nepal began with a simple mission: to bridge the gap between academic learning and industry requirements in Nepal's growing technology sector.
                                 </p>
@@ -88,7 +88,7 @@ function page() {
                                 </p>
                             </div>
 
-                            {/* Toggle for mobile */}
+                            {/* Mobile View */}
                             <div className="d-md-none">
                                 {showMore ? (
                                     <>
@@ -116,6 +116,7 @@ function page() {
                                 </button>
                             </div>
 
+                            {/* Stats */}
                             <div className="d-flex gap-4 mt-4">
                                 <div className="text-center">
                                     <h4 className="text-primary">10+</h4>
@@ -129,25 +130,26 @@ function page() {
                         </div>
 
                         {/* Image Section */}
-                        <div className="col-md-6 position-relative  mt-md-0">
-                            <div className="shadow rounded overflow-hidden">
+                        <div className="col-md-6 position-relative mt-4 mt-md-0">
+                            <div className="shadow rounded overflow-hidden text-center">
                                 <img
-                                    className='w-100'
+                                    className='img-fluid custom-img-small'
                                     src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                                    alt=""
+                                    alt="TechSpace"
                                 />
                             </div>
 
                             {/* Badge */}
                             <div className="position-absolute bottom-0 start-0 translate-middle-y bg-white shadow p-3 rounded">
-                                <h5 className="text-primary m-0">2013</h5>
-                                <small className="text-muted">Established</small>
+                                <h5 className="text-primary m-0">2026</h5>
+                                <small className="text-muted">ESTABLISHE</small>
+                            
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
-
 
             {/* About section */}
             <section className='py-3 mt-4'>
@@ -262,7 +264,7 @@ function page() {
 
 
             {/* Our Core Values */}
-            <section className="py-5 text-center shadow">
+            {/* <section className="py-5 text-center shadow">
                 <div className="container">
 
 
@@ -308,7 +310,7 @@ function page() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
 
 
