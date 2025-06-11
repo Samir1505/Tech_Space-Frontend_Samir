@@ -55,8 +55,6 @@ const services = [
 ];
 
 
-
-
 function page() {
     // number section
     const refs = {

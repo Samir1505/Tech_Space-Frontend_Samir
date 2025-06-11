@@ -1,6 +1,7 @@
 // /auth/adminRegister/page.tsx
 import Head from 'next/head';
-import AdminRegisterPage from './page';
+import AdminRegisterPage from './superAdmin/page';
+
 
 export default function Page() {
   return (
@@ -9,7 +10,7 @@ export default function Page() {
         <meta name="robots" content="noindex, nofollow" />
         <title>Admin Registration</title>
       </Head>
-      <AdminRegisterPage />
+      <AdminRegisterPage/>
     </>
   );
 }
