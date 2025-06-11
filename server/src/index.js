@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from "cors"
+import path from "path";
 import dbConnect from './db/connection.js';
 import inquiryRoutes from './routes/inquiryRoute.js'
 import cookieParser from 'cookie-parser';
@@ -9,11 +10,18 @@ import errorMiddleware from './middlewares/errorMiddleware.js';
 import authRoutes from './routes/authRoutes.js';
 import Auth from './models/Auth.js';
 import contactRoutes from './routes/contactRoutes.js';
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
 
 const app = express();
 dotenv.config();
 dbConnect();
 
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Middleware
 app.use(cors());
@@ -26,6 +34,11 @@ app.use('/api/inquiry', inquiryRoutes);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
+
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/api/gallery", galleryRoutes);
+
 
 
 // Test route (optional)

@@ -4,7 +4,7 @@ import Courses from '@/pages/Courses'
 import HeroSection from '@/pages/HeroSection'
 import React from 'react'
 import Footer from './Component/Footer'
-import GalleryForm from './(users)/gallery/page'
+import Gallery from './(users)/gallery/page'
 
 
 
@@ -13,7 +13,7 @@ function page() {
     <>
         <HeroSection/>   
          <Courses/>
-         <GalleryForm/>
+         <Gallery/>
          <Footer/>
     </>
   )
