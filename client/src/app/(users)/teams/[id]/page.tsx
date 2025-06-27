@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function TeamListPage() {
   const [team, setTeam] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6); // ✅ show 6 initially
+  const [visibleCount, setVisibleCount] = useState(3); // ✅ show 3 initially
   const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
 
@@ -31,7 +31,7 @@ export default function TeamListPage() {
   };
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 3);
+    setVisibleCount(team.length); // ✅ Show all on click
   };
 
   const handleCardClick = (id) => {
@@ -50,7 +50,8 @@ export default function TeamListPage() {
       onClick={() => handleCardClick(member._id)}
     >
       <div
-        className="card text-center border-0 px-4 pt-4 pb-4 w-100"
+        className={`card text-center border-0 px-4 pt-4 pb-4 w-100 ${visibleCount > 3 ? "fade-in" : ""
+          }`}
         style={{
           borderRadius: "20px",
           backgroundColor: "#fff",
@@ -131,16 +132,30 @@ export default function TeamListPage() {
           </div>
           {visibleCount < team.length && (
             <div className="text-center mt-4">
-              <button
-                className="btn btn-primary px-4"
-                onClick={handleLoadMore}
-              >
+              <button className="btn btn-primary px-4" onClick={handleLoadMore}>
                 Load More
               </button>
             </div>
           )}
         </>
       )}
+      <style jsx global>{`
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`}</style>
+
     </div>
   );
 }

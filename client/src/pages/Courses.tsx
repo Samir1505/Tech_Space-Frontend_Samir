@@ -1,90 +1,3 @@
-// 'use client';
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// export default function Courses() {
-//     const [selectedCategory, setSelectedCategory] = useState('All');
-//     const [courses, setCourses] = useState([]);
-//     const [filteredCourses, setFilteredCourses] = useState([]);
-
-//     useEffect(() => {
-//         axios.get('http://localhost:5000/api/courses').then(r => setCourses(r.data));
-//     }, []);
-
-//     useEffect(() => {
-//         if (selectedCategory === 'All') setFilteredCourses(courses);
-//         else setFilteredCourses(courses.filter(c => c.category === selectedCategory));
-//     }, [selectedCategory, courses]);
-
-//     const categories = ['All', ...new Set(courses.map(c => c.category))];
-
-//     return (
-//         <div className="container my-4">
-//             {/* Category buttons (same as your component) */}
-//             <div className="mb-3">
-//                 <div className="d-flex overflow-auto" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-//                     <style>{`div::-webkit-scrollbar { display: none; }`}</style>
-//                     {categories.map(cat => (
-//                         <a
-//                             key={cat}
-//                             className={`btn-${selectedCategory === cat ? 'primary' : 'outline-primary'} me-5 mb-2`}
-//                             onClick={() => setSelectedCategory(cat)}
-//                             style={{ cursor: 'pointer' }}
-//                         >
-//                             {cat}
-//                         </a>
-
-//                     ))}
-//                 </div>
-//             </div>
-
-
-//             <div className="row overflow-scroll-wrapper">
-//                 {filteredCourses.map(c => (
-//                     <div className="col-12 col-sm-6 col-md-3 mb-4" key={c._id}>
-//                         <div className="card h-100 shadow-sm rounded border border-light-subtle overflow-hidden">
-//                             <div className="position-relative">
-//                                 <div className="p-3 pb-0 overflow-hidden">
-//                                     <div className="image-hover-wrapper rounded w-100">
-//                                         <img
-//                                             src={`http://localhost:5000${c.image}`}
-//                                             alt={c.title}
-//                                             className="card-img-top rounded w-100 image-hover"
-//                                             style={{
-//                                                 height: '200px',
-//                                                 objectFit: 'cover',
-//                                             }}
-//                                         />
-//                                     </div>
-//                                     <span
-//                                         className="badge bg-primary text-danger d-inline-flex align-items-center px-3 py-2 rounded fw-medium position-absolute"
-//                                         style={{
-//                                             top: '1.5rem',
-//                                             right: '1.5rem',
-//                                             zIndex: 1,
-//                                         }}
-//                                     >
-//                                         {c.duration}
-//                                     </span>
-//                                 </div>
-//                                 <div className="card-body">
-//                                     <p className="bg-primary text-danger d-inline-flex align-items-center px-3 py-2 mb-1 rounded fw-medium">
-//                                         {c.category}
-//                                     </p>
-//                                     <h5 className="card-title">{c.title}</h5>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-
-
-
-
-//         </div>
-//     );
-// }
 'use client';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -114,22 +27,56 @@ export default function Courses() {
   return (
     <div className="container my-5">
       {/* Category Filter Buttons */}
-      <div className="mb-5 d-flex flex-wrap justify-content-center gap-3">
-        {categories.map(cat => (
+      <div
+        className="mb-5 d-flex flex-nowrap justify-content-start gap-3 overflow-auto px-2 border-bottom pb-2"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+        }}
+      >
+        <style jsx>{`
+    div::-webkit-scrollbar {
+      display: none;
+    }
+  `}</style>
+
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`btn fw-semibold rounded-pill px-4 py-2 ${
-              selectedCategory === cat
-                ? 'btn-primary shadow-lg text-white'
-                : 'btn-outline-primary'
-            }`}
-            style={{ minWidth: 110, transition: 'all 0.3s ease' }}
+            className="bg-transparent border-0 fw-semibold px-3 py-2 text-nowrap"
+            style={{
+              color: selectedCategory === cat ? '#0d6efd' : '#333',
+              fontSize: '1rem',
+              transition: 'color 0.3s ease',
+              whiteSpace: 'nowrap',
+              fontWeight: selectedCategory === cat ? '600' : '500',
+              letterSpacing: '0.5px',
+              textTransform: 'capitalize',
+            }}
           >
-            {cat}
+            <span style={{ position: 'relative', display: 'inline-block' }}>
+              {cat}
+              {selectedCategory === cat && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    bottom: -2,
+                    height: '2px',
+                    width: '100%',
+                    backgroundColor: '#0d6efd',
+                    borderRadius: '1px',
+                    transition: 'width 0.3s ease',
+                  }}
+                />
+              )}
+            </span>
           </button>
         ))}
+
       </div>
+
 
       {/* Courses Grid */}
       <div className="row g-4">
@@ -140,35 +87,40 @@ export default function Courses() {
         {filteredCourses.map((c, idx) => (
           <div
             key={c._id}
-            className={`col-12 col-sm-6 col-md-4 col-lg-3 course-col ${
-              animate ? 'fade-slide-in' : ''
-            }`}
+            className={`col-12 col-sm-6 col-md-4 col-lg-3 course-col ${animate ? 'fade-slide-in' : ''
+              }`}
             style={{ '--delay': `${idx * 100}ms` } as React.CSSProperties}
           >
             <div
-              className="card course-card h-100 shadow-sm rounded-4 overflow-hidden"
+              className="card h-100 rounded-2 overflow-hidden"
               style={{
-                background: 'rgba(255 255 255 / 0.85)',
+                background: 'rgba(255, 255, 255, 0.95)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(0,0,0,0.05)',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                border: '1px solid rgba(0, 0, 0, 0.08)', // 👈 clean, visible border
               }}
             >
-              {/* image + content same as before */}
-              <div className="position-relative overflow-hidden rounded-top">
+
+
+              {/* image */}
+              <div className="position-relative overflow-hidden">
                 <img
                   src={`http://localhost:5000${c.image}`}
                   alt={c.title}
-                  className="card-img-top"
-                  style={{ height: 200, objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                  className="card-img-top p-3"
+                  style={{
+                    height: 200,
+                    objectFit: 'cover',
+                    transition: 'transform 0.4s ease',
+                    borderRadius: '1.3rem',
+                  }}
                 />
                 <span
-                  className="badge bg-white text-primary fw-semibold position-absolute"
+                  className="badge bg-danger text-white fw-semibold position-absolute"
                   style={{
-                    top: '1rem',
-                    right: '1rem',
+                    top: '1.5rem',
+                    right: '1.5rem',
                     padding: '0.5rem 1rem',
-                    borderRadius: '2rem',
+                    // borderRadius: '2rem',
                     boxShadow: '0 0 10px rgba(0,0,0,0.07)',
                     fontSize: '0.8rem',
                   }}
@@ -176,44 +128,46 @@ export default function Courses() {
                   {c.duration}
                 </span>
               </div>
-              <div className="card-body d-flex flex-column">
-                <span className="badge bg-light text-primary mb-2 px-3 py-1 rounded-pill text-uppercase fw-semibold small">
-                  {c.category}
-                </span>
-                <h5 className="card-title fw-bold text-dark mb-3">{c.title}</h5>
-                <a href="#" className="mt-auto text-decoration-none fw-semibold text-primary">
-                  Learn More →
-                </a>
+
+              {/* content */}
+              <div className="card-body d-flex flex-column pt-0">
+                <h5
+                  className="card-title mb-2"
+                  style={{
+                    fontWeight: 600,
+                    fontSize: '1.1rem',
+                    color: '#1a1a1a',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {c.title}
+                </h5>
+
+                <div
+                  className="d-flex align-items-center gap-2"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: '0.82rem',
+                    color: '#5c636a', // muted blue-gray
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.4px',
+                  }}
+                >
+                  <i className="bi bi-clock-history text-primary" style={{ fontSize: '1rem' }}></i>
+                  <span className='text-primary'>{c.duration}</span>
+                </div>
               </div>
             </div>
           </div>
         ))}
+
+
+
+
       </div>
 
-      {/* Animation CSS */}
-      <style jsx>{`
-        .course-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-        }
-        .course-card:hover img {
-          transform: scale(1.06);
-        }
-        .course-col {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        .fade-slide-in {
-          animation: fadeSlideIn 500ms ease forwards;
-          animation-delay: var(--delay);
-        }
-        @keyframes fadeSlideIn {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+
+
     </div>
   );
 }

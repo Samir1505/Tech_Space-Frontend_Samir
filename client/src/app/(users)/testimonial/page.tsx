@@ -1,8 +1,3 @@
-// "use client";
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
 
 // function Testimonialpage() {
 //   const [testimonials, setTestimonials] = useState([]);
@@ -251,26 +246,239 @@ function Testimonialpage() {
   };
 
   return (
+
+    // <section className="bg-light py-5">
+    //   <div className="container">
+    //     <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    //       <div className="text-center text-md-start">
+    //         <h2 className="fw-bold text-primary mb-2">What Our Students Say</h2>
+    //         <p className="text-muted mb-2 mb-md-0">
+    //           Real stories from our learners across Nepal — boosting careers in IT.
+    //         </p>
+    //       </div>
+    //       <div className="mt-3 mt-md-0">
+    //         <a href="/testimonial/TestimonialDetails" className="btn btn-outline-primary fw-semibold">
+    //           View More
+    //         </a>
+    //       </div>
+    //     </div>
+
+    //     {testimonials.length === 0 ? (
+    //       <p className="text-center text-muted">No testimonials available yet.</p>
+    //     ) : (
+    //       <div className="row g-4">
+    //         <Carousel
+    //           responsive={responsive}
+    //           infinite
+    //           autoPlay
+    //           autoPlaySpeed={3000}
+    //           keyBoardControl
+    //           showDots
+    //           arrows={false}
+    //           containerClass="carousel-container px-0 pb-5 pt-3"
+    //           itemClass="carousel-item-padding-40-px"
+    //         >
+    //           {testimonials.slice(0, 5).map((testimonial, idx) => (
+    //             <div className="col-12 px-3 py-5" key={testimonial._id || idx}>
+    //               <div
+    //                 className="px-4 py-5 bg-white shadow rounded-4 position-relative"
+    //                 style={{
+    //                   minHeight: "280px",
+    //                   borderLeft: "5px solid #f48024",
+    //                   borderRight: "5px solid #f48024",
+    //                 }}
+    //               >
+    //                 <div
+    //                   className="position-absolute d-flex justify-content-center align-items-center"
+    //                   style={{
+    //                     top: "0",
+    //                     left: "10%",
+    //                     transform: "translate(-50%, -50%)",
+    //                     backgroundColor: "#fff",
+    //                     width: "48px",
+    //                     height: "48px",
+    //                     borderRadius: "50%",
+    //                     boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    //                   }}
+    //                 >
+    //                   <svg
+    //                     xmlns="http://www.w3.org/2000/svg"
+    //                     viewBox="0 0 448 512"
+    //                     width="24"
+    //                     height="24"
+    //                   >
+    //                     <path d="M0 216C0 149.7 53.7 96 120 96l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72zm256 0c0-66.3 53.7-120 120-120l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72z" />
+    //                   </svg>
+    //                 </div>
+
+    //                 <p className="text-secondary mb-2 border-top" style={{ fontSize: "16px", lineHeight: "1.6" }}>
+    //                   {testimonial.message.split(" ").slice(0, 35).join(" ")}
+    //                   {testimonial.message.split(" ").length > 35 ? "..." : ""}
+    //                 </p>
+
+    //                 {testimonial.message.split(" ").length > 35 && (
+    //                   <a
+    //                     className="fw-semibold p-0 text-primary text-decoration-none"
+    //                     onClick={() => openModal(testimonial)}
+    //                     style={{ cursor: "pointer", fontSize: "14px" }}
+    //                   >
+    //                     Read More
+    //                   </a>
+    //                 )}
+
+    //                 <div className="d-flex align-items-center flex-nowrap mt-2 border-bottom">
+    //                   <img
+    //                     src={
+    //                       testimonial.image
+    //                         ? `http://localhost:5000${testimonial.image}`
+    //                         : "https://via.placeholder.com/170"
+    //                     }
+    //                     alt={testimonial.name}
+    //                     className="rounded-circle me-3"
+    //                     width="85"
+    //                     height="85"
+    //                     style={{
+    //                       width: "85px",
+    //                       height: "85px",
+    //                       objectFit: "cover",
+    //                       objectPosition: "center center", // 👈 change this
+    //                       border: "3px solid #ffffff",
+    //                       boxShadow: "0 0 0 4px #d2e9ff",
+    //                     }}
+    //                   />
+
+    //                   <div>
+    //                     <h6 className="mb-0 fw-bold">{testimonial.name}</h6>
+    //                     <small className="text-muted">{testimonial.course}</small>
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           ))}
+    //         </Carousel>
+    //       </div>
+    //     )}
+    //   </div>
+
+    //   {/* Modal */}
+    //   {selected && (
+    //     <div className="modal-overlay" onClick={closeModal}>
+    //       <div
+    //         className="modal-content card shadow"
+    //         onClick={(e) => e.stopPropagation()}
+    //         style={{
+    //           position: "fixed",
+    //           top: "50%",
+    //           left: "50%",
+    //           transform: "translate(-50%, -50%)",
+    //           zIndex: 1050,
+    //           width: "90%",
+    //           maxWidth: "600px",
+    //           padding: "20px",
+    //           backgroundColor: "#fff",
+    //           borderRadius: "10px",
+    //         }}
+    //       >
+    //         <div className="row align-items-center w-100 mb-3">
+    //           <div className="col-10 d-flex align-items-center">
+    //             <img
+    //               src={
+    //                 selected.image
+    //                   ? `http://localhost:5000${selected.image}`
+    //                   : "https://via.placeholder.com/55"
+    //               }
+    //               alt={selected.name}
+    //               className="rounded-circle me-3"
+    //               style={{
+    //                 width: "90px",
+    //                 height: "90px",
+    //                 objectFit: "cover",
+    //                 objectPosition: "center",
+    //                 border: "3px solid #fff",
+    //                 boxShadow: "0 0 0 4px #b6d9ff",
+    //               }}
+    //             />
+    //             <div>
+    //               <h5 className="mb-0">{selected.name}</h5>
+    //               <small className="text-muted">{selected.course}</small>
+    //             </div>
+    //           </div>
+    //           <div className="col-2 text-end">
+    //             <a
+    //               onClick={closeModal}
+    //               className="fw-semibold text-decoration-none"
+    //               role="button"
+    //               style={{ cursor: "pointer" }}
+    //             >
+    //               Close
+    //             </a>
+    //           </div>
+    //         </div>
+    //         <p className="mb-0">{selected.message}</p>
+    //       </div>
+    //     </div>
+    //   )}
+    // </section>
+
     <section className="bg-light py-5">
       <div className="container">
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-          <div className="text-center text-md-start">
-            <h2 className="fw-bold text-primary mb-2">What Our Students Say</h2>
-            <p className="text-muted mb-2 mb-md-0">
-              Real stories from our learners across Nepal — boosting careers in IT.
-            </p>
-          </div>
-          <div className="mt-3 mt-md-0">
-            <a href="/testimonial/TestimonialDetails" className="btn btn-outline-primary fw-semibold">
-              View More
-            </a>
+        {/* Row 1: Header and Button */}
+        <div className="row mb-4">
+          <div className="col-12">
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+              <div className="text-center text-md-start">
+                <h2
+                  className="fw-bold mb-2"
+                  style={{
+                    fontSize: "2rem",
+                    fontWeight: "700",
+                    fontFamily: "Poppins, sans-serif",
+                    color: "#002147", // Deep blue matching logo
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  What Our Students Say
+                </h2>
+                <p
+                  className="mb-2 mb-md-0"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    fontFamily: "Poppins, sans-serif",
+                    color: "#555",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Real stories from our learners across Nepal — boosting careers in IT.
+                </p>
+              </div>
+              <div className="mt-3 mt-md-0">
+                <a
+                  href="/testimonial/TestimonialDetails"
+                  className="btn btn-outline-primary fw-semibold"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    fontFamily: "Poppins, sans-serif",
+                    textTransform: "uppercase",
+                    color: "#002147", // Text color matching logo
+                    borderColor: "#002147", // Outline button color match
+                  }}
+                >
+                  View More
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        {testimonials.length === 0 ? (
-          <p className="text-center text-muted">No testimonials available yet.</p>
-        ) : (
-          <div className="row g-4">
+
+        {/* Row 2: Testimonials */}
+        <div className="row g-4">
+          {testimonials.length === 0 ? (
+            <p className="text-center text-muted">No testimonials available yet.</p>
+          ) : (
             <Carousel
               responsive={responsive}
               infinite
@@ -279,89 +487,131 @@ function Testimonialpage() {
               keyBoardControl
               showDots
               arrows={false}
-              containerClass="carousel-container px-0 pb-5 pt-3"
+              containerClass="carousel-container px-0 pb-4"
               itemClass="carousel-item-padding-40-px"
             >
-              {testimonials.slice(0, 5).map((testimonial, idx) => (
-                <div className="col-12 px-3 py-5" key={testimonial._id || idx}>
-                  <div
-                    className="px-4 py-5 bg-white shadow rounded-4 position-relative"
-                    style={{
-                      minHeight: "280px",
-                      borderLeft: "5px solid #f48024",
-                      borderRight: "5px solid #f48024",
-                    }}
-                  >
+              {testimonials.slice(0, 5).map((testimonial, idx) => {
+                const borderColor = "#4A75F3"; // Blue from logo
+                const imageBorderColor = "#FF4C4C"; // Red from logo
+
+                return (
+                  // 🔽 CHANGED: Reduced padding from py-5 to py-3 for less vertical space
+                  <div className="col-12 px-3 py-4" key={testimonial._id || idx}>
                     <div
-                      className="position-absolute d-flex justify-content-center align-items-center"
+                      className="px-4 py-5 bg-white shadow rounded-4 position-relative"
                       style={{
-                        top: "0",
-                        left: "10%",
-                        transform: "translate(-50%, -50%)",
-                        backgroundColor: "#fff",
-                        width: "48px",
-                        height: "48px",
-                        borderRadius: "50%",
-                        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+                        minHeight: "200px",
+                        borderBottom: `5px solid ${borderColor}`,
+                        // borderRight: `5px solid ${borderColor}`,
                       }}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        width="24"
-                        height="24"
-                      >
-                        <path d="M0 216C0 149.7 53.7 96 120 96l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72zm256 0c0-66.3 53.7-120 120-120l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72z" />
-                      </svg>
-                    </div>
-
-                    <p className="text-secondary mb-2 border-top" style={{ fontSize: "16px", lineHeight: "1.6" }}>
-                      {testimonial.message.split(" ").slice(0, 35).join(" ")}
-                      {testimonial.message.split(" ").length > 35 ? "..." : ""}
-                    </p>
-
-                    {testimonial.message.split(" ").length > 35 && (
-                      <a
-                        className="fw-semibold p-0 text-primary text-decoration-none"
-                        onClick={() => openModal(testimonial)}
-                        style={{ cursor: "pointer", fontSize: "14px" }}
-                      >
-                        Read More
-                      </a>
-                    )}
-
-                    <div className="d-flex align-items-center flex-nowrap mt-2 border-bottom">
-                      <img
-                        src={
-                          testimonial.image
-                            ? `http://localhost:5000${testimonial.image}`
-                            : "https://via.placeholder.com/170"
-                        }
-                        alt={testimonial.name}
-                        className="rounded-circle me-3"
-                        width="85"
-                        height="85"
+                      <div
+                        className="position-absolute d-flex justify-content-center align-items-center"
                         style={{
-                          width: "85px",
-                          height: "85px",
-                          objectFit: "cover",
-                          objectPosition: "center center", // 👈 change this
-                          border: "3px solid #ffffff",
-                          boxShadow: "0 0 0 4px #d2e9ff",
+                          top: "0",
+                          left: "10%",
+                          transform: "translate(-50%, -50%)",
+                          backgroundColor: "white",
+                          width: "48px",
+                          height: "48px",
+                          borderRadius: "50%",
+                          boxShadow: "0 0 10px rgba(0,0,0,0.1)",
                         }}
-                      />
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                          width="24"
+                          height="24"
+                        >
+                          <path d="M0 216C0 149.7 53.7 96 120 96l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72zm256 0c0-66.3 53.7-120 120-120l8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-8 0c-30.9 0-56 25.1-56 56l0 8 64 0c35.3 0 64 28.7 64 64l0 64c0 35.3-28.7 64-64 64l-64 0c-35.3 0-64-28.7-64-64l0-32 0-32 0-72z" />
+                        </svg>
+                      </div>
 
-                      <div>
-                        <h6 className="mb-0 fw-bold">{testimonial.name}</h6>
-                        <small className="text-muted">{testimonial.course}</small>
+                      <p
+                        className="text-secondary mb-2"
+                        style={{
+                          fontSize: "16px",
+                          lineHeight: "1.6",
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: "400",
+                          color: "#333",
+                        }}
+                      >
+                        {testimonial.message.split(" ").slice(0, 35).join(" ")}
+                        {testimonial.message.split(" ").length > 35 ? "..." : ""}
+                      </p>
+
+                      {testimonial.message.split(" ").length > 35 && (
+                        <a
+                          className="fw-semibold p-0 text-primary text-decoration-none"
+                          onClick={() => openModal(testimonial)}
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            fontFamily: "Poppins, sans-serif",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          Read More
+                        </a>
+                      )}
+
+                      <div className="d-flex align-items-center flex-nowrap mt-2">
+                        <img
+                          src={
+                            testimonial.image
+                              ? `http://localhost:5000${testimonial.image}`
+                              : "https://via.placeholder.com/170"
+                          }
+                          alt={testimonial.name}
+                          className="rounded-circle me-3"
+                          width="85"
+                          height="85"
+                          style={{
+                            width: "85px",
+                            height: "85px",
+                            objectFit: "cover",
+                            objectPosition: "center center",
+                            border: "3px solid #ffffff",
+                            boxShadow: "0 0 0 4px #FF4C4C",
+                          }}
+                        />
+                        <div>
+                          <h6
+                            className="mb-0"
+                            style={{
+                              fontWeight: "700",
+                              fontSize: "18px",
+                              fontFamily: "Poppins, sans-serif",
+                              color: "#000",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {testimonial.name}
+                          </h6>
+                          <small
+                            className="text-muted"
+                            style={{
+                              fontWeight: "500",
+                              fontFamily: "Poppins, sans-serif",
+                              fontSize: "14px",
+                              color: "#555",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            {testimonial.course}
+                          </small>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </Carousel>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Modal */}
@@ -399,12 +649,34 @@ function Testimonialpage() {
                     objectFit: "cover",
                     objectPosition: "center",
                     border: "3px solid #fff",
-                    boxShadow: "0 0 0 4px #b6d9ff",
+                    boxShadow: "0 0 0 4px #FF4C4C",
                   }}
                 />
                 <div>
-                  <h5 className="mb-0">{selected.name}</h5>
-                  <small className="text-muted">{selected.course}</small>
+                  <h5
+                    className="mb-0"
+                    style={{
+                      fontWeight: "700", // bold
+                      fontSize: "20px",
+                      fontFamily: "Poppins, sans-serif",
+                      color: "#000",
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {selected.name}
+                  </h5>
+                  <small
+                    className="text-muted"
+                    style={{
+                      fontWeight: "500", // semibold
+                      fontSize: "14px",
+                      fontFamily: "Poppins, sans-serif",
+                      textTransform: "uppercase",
+                      color: "#555",
+                    }}
+                  >
+                    {selected.course}
+                  </small>
                 </div>
               </div>
               <div className="col-2 text-end">
@@ -412,17 +684,41 @@ function Testimonialpage() {
                   onClick={closeModal}
                   className="fw-semibold text-decoration-none"
                   role="button"
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    fontFamily: "Poppins, sans-serif",
+                    textTransform: "uppercase",
+                    color: "#FF4C4C",
+                  }}
                 >
                   Close
                 </a>
               </div>
             </div>
-            <p className="mb-0">{selected.message}</p>
+
+            <p
+              className="mb-0"
+              style={{
+                fontSize: "16px",
+                lineHeight: "1.6",
+                fontWeight: "400",
+                fontFamily: "Poppins, sans-serif",
+                color: "#333",
+              }}
+            >
+              {selected.message}
+            </p>
           </div>
         </div>
       )}
+
+
     </section>
+
+
+
   );
 }
 

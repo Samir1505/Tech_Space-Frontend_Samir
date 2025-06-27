@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
+// 🔐 Define TypeScript interface for a Contact item
 interface Contact {
   _id: string;
   name: string;
@@ -17,11 +20,30 @@ interface Contact {
 const ContactTable = () => {
   const [inquiries, setInquiries] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [pageLoading, setPageLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const router = useRouter();
+
+  // 🔐 Auth check + delay
+  useEffect(() => {
+    const token = Cookies.get("adminToken");
+
+    setTimeout(() => {
+      if (!token) {
+        toast.error("🔒 Please login to access this page");
+        router.push("/auth/adminLogin");
+      } else {
+        fetchInquiries();
+      }
+      setPageLoading(false);
+    }, 1000); 
+  }, []);
+
+  // 📦 Fetch contact inquiries
   const fetchInquiries = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/contact');
+      const res = await axios.get("http://localhost:5000/api/contact");
       const allInquiries: Contact[] = res.data.inquiries || res.data;
 
       const sorted = allInquiries.sort(
@@ -30,64 +52,98 @@ const ContactTable = () => {
 
       setInquiries(sorted);
     } catch (err) {
-      toast.error('Failed to fetch contact');
+      toast.error("Failed to fetch contact");
     } finally {
       setLoading(false);
     }
   };
 
+  // ❌ Delete a contact inquiry
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you sure you want to delete this Contact?')) return;
+    if (!window.confirm("Are you sure you want to delete this Contact?")) return;
     try {
       await axios.delete(`http://localhost:5000/api/contact/${id}`);
       setInquiries((prev) => prev.filter((inq) => inq._id !== id));
-      toast.success('Contact deleted');
+      toast.success("Contact deleted");
     } catch {
-      toast.error('Delete failed');
+      toast.error("Delete failed");
     }
   };
 
+  // 🔍 Filter by search term
   const filteredInquiries = inquiries.filter((inq) =>
     [inq.name, inq.mobile, inq.email, inq.course]
       .filter(Boolean)
-      .join(' ')
+      .join(" ")
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
 
-  useEffect(() => {
-    fetchInquiries();
-  }, []);
+  // 🌀 Full-page loader (on initial URL access)
+ if (pageLoading) {
+  return (
+    <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+      <div className="multi-spinner"></div>
+      <style jsx>{`
+        .multi-spinner {
+          width: 4rem;
+          height: 4rem;
+          border: 8px solid transparent;
+          border-top: 8px solid red;
+          border-right: 8px solid blue;
+          border-bottom: 8px solid green;
+          border-left: 8px solid orange;
+          border-radius: 50%;
+          animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 
   return (
     <div className="container py-5">
       <Toaster />
-     <div className="row align-items-center mb-4 g-3">
-  {/* Heading: col-12 on mobile, col-6 on md+ */}
-  <div className="col-12 col-md-6">
-    <h2 className="text-primary fw-bold m-0">Any questions</h2>
-  </div>
 
-  {/* Search input: col-12 on mobile, col-6 on md+ */}
-  <div className="col-12 col-md-6">
-    <div className="input-group">
-      <span className="input-group-text bg-white">
-        <i className="bi bi-search" />
-      </span>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Search by name, mobile, email, course..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-    </div>
-  </div>
-</div>
+      {/* 🔷 Header & Search */}
+      <div className="row align-items-center mb-4 g-3">
+        <div className="col-12 col-md-6">
+          <h2 className="text-primary fw-bold m-0">Any Questions</h2>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="input-group">
+            <span className="input-group-text bg-white">
+              <i className="bi bi-search" />
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by name, mobile, email, course..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
 
-
+      {/* 🧾 Table or Loading/Error Messages */}
       {loading ? (
-        <p>Loading...</p>
+        <div className="text-center my-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
       ) : filteredInquiries.length === 0 ? (
         <p className="text-muted">No contact found.</p>
       ) : (
@@ -109,12 +165,12 @@ const ContactTable = () => {
               {filteredInquiries.map((inq, idx) => (
                 <tr key={inq._id} className="text-center">
                   <td>{idx + 1}</td>
-                  <td>{inq.name}</td>
+                  <td className="text-capitalize">{inq.name}</td>
                   <td>{inq.mobile}</td>
-                  <td>{inq.email}</td>
+                  <td className="text-lowercase">{inq.email}</td>
                   <td>{inq.course}</td>
-                  <td>{inq.message || '-'}</td>
-                  <td>{new Date(inq.createdAt).toLocaleDateString()}</td>
+                  <td title={inq.message}>{inq.message?.slice(0, 30) || "-"}</td>
+                  <td>{new Date(inq.createdAt).toLocaleDateString("en-GB")}</td>
                   <td>
                     <button
                       onClick={() => handleDelete(inq._id)}

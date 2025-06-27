@@ -253,7 +253,32 @@
 
 
 
-
-.service-icon{
-  color: red;
+/* Testimonial  */
+/* 🔴 Change carousel dot color to red */
+.react-multi-carousel-dot button {
+  background: #d3d3d3; /* default (inactive) dot color */
+  border: none;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
 }
+
+.react-multi-carousel-dot--active button {
+  background: blue !important; /* 🔴 active dot color = red */
+}
+
+/* teams */
+.custom-scroll-x {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+  overflow-y: visible !important; /* ✅ Key fix for shadow */
+}
+
+.custom-scroll-x::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari */
+}
+
+
+
